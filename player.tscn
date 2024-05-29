@@ -1,0 +1,54 @@
+[gd_scene load_steps=23 format=3 uid="uid://cobh26wtkia7y"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_cs4v2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eic25"]
+size = Vector2(10, 16)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 30
+script = ExtResource("1_cs4v2")
+movement_data = ExtResource("2_t8i46")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_eic25")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_t2i0h")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_bottom = 216
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="WallJumpTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="RaycastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -9.96)
+target_position = Vector2(-5.1, 0)
+collision_mask = 4
+
+[node name="RaycastBottomLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -2.5)
+target_position = Vector2(-5.1, 0)
+collision_mask = 4
+
+[node name="RaycastRight" type="RayCast2D" parent="."]
+position = Vector2(0, -9.96)
+target_position = Vector2(5.1, 0)
+collision_mask = 4
+
+[node name="RaycastBottomRight" type="RayCast2D" parent="."]
+position = Vector2(0, -2.5)
+target_position = Vector2(5.1, 0)
+collision_mask = 4
